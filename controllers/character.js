@@ -1,6 +1,7 @@
 const db = require('../db/index')
 
 function getAllPeople (req, res, next) {
+if (Object.values(req.query).length === 0){ 
     db.many('SELECT * FROM people')
     .then((people) => {
         res.status(200)
@@ -8,6 +9,7 @@ function getAllPeople (req, res, next) {
     })
     .catch(err => next(err));
 } 
+}
 
 function addNewCharacter (req, res, next) {
     const {name, picture_url, dead, house_id, religion_id} = req.body
@@ -29,4 +31,8 @@ function getPersonById (req, res, next){
     .catch(err=> next(err))
 }
 
-module.exports = {getAllPeople, addNewCharacter, getPersonById}
+function getPersonByQuery (req, res, next) {
+
+}
+
+module.exports = {getAllPeople, addNewCharacter, getPersonById, getPersonByQuery}
