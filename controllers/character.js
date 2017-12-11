@@ -19,4 +19,14 @@ function addNewCharacter (req, res, next) {
     .catch(err => next(err));
 } 
 
-module.exports = {getAllPeople, addNewCharacter}
+function getPersonById (req, res, next){
+   const id = req.params.id
+    db.one(`SELECT * FROM people where id = ${id}`)
+    .then((person)=>{
+        res.status(200)
+        res.send({person})
+    })
+    .catch(err=> next(err))
+}
+
+module.exports = {getAllPeople, addNewCharacter, getPersonById}

@@ -74,10 +74,23 @@ describe('/api', () => {
                 });
         });
     });
-      
-      
-      
-      
-      
+    describe('/people/:id', () => {
+        it('get returns object with an individual person in an array and returns a 200 status', () => {
+            return request
+                .get('/api/people/2')
+                .expect(200)
+                .then(res => {
+                    console.log(res.body)
+                    expect(res.body.person).to.be.an('object')
+                    expect(res.body.person.name).to.equal('Catelyn Stark')
+                });
+
         });
+    });
+      
+      
+      
+      
+      
+});
     
