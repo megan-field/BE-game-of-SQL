@@ -1,0 +1,23 @@
+{
+  "name": "week6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "psql -f seed/test.seed.sql && mocha spec",
+    "seed": "psql -f seed/seed.sql",
+    "dev": "nodemon listen.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
+    "express": "^4.16.2",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.5",
+    "pg-promise": "^7.3.2",
+    "supertest": "^3.0.0"
+  }
+}
