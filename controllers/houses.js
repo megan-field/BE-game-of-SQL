@@ -4,7 +4,7 @@ const db = require('../db/index')
 function getAllHouses (req, res, next) {
 db.many('SELECT * FROM houses')
 .then((houses)=>{
-res.send({houses})
+res.render('index', {houses})
 })
 .catch(err => next(err));
 }

@@ -1,12 +1,13 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 const app = require('express')();
+app.set('view engine', 'ejs');
 const bodyParser = require('body-parser')
 const apiRouter = require('./router/api')
 
 app.use(bodyParser.json())
 
 app.get('/', (req,res)=>{
-    res.send('alles gute')
+    res.send('all good')
 })
 
 app.use('/api', apiRouter)
