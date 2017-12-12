@@ -5,7 +5,7 @@
 <%- include('partials/header') %>
     <h1>Game of SQL</h1>
     <% houses.forEach(function (house) { %>
-
+        <% if (house.sigil_img === null) house.sigil_img = 'http://2.media.collegehumor.cvcdn.com/51/64/7692441a5ecc5bfc1b3925fd1cb2a98b-game-of-thrones-sigil-for-house-bluth.jpg' %>
         <div class = 'box'>
             <h2><%= house.house_name %></h2>
             <p><b>House Name:</b><%= house.house_name %></p>

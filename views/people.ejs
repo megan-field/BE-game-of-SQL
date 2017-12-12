@@ -5,7 +5,7 @@
         <%- include('partials/header') %>
     <h1>Game of SQL</h1>
     <% people.forEach(function (person) { %>
-        <% if (person.picture_url === null) person.picture_url = http://vignette4.wikia.nocookie.net/gameofthrones/images/9/92/Faceless_Men_Histories_%26_Lore.png/revision/latest?cb=20160313030358 %>
+        <%  if (person.picture_url === null) person.picture_url = 'http://vignette4.wikia.nocookie.net/gameofthrones/images/9/92/Faceless_Men_Histories_%26_Lore.png/revision/latest?cb=20160313030358' %>
         <div class = 'box'>
             <h2><%= person.name %></h2>
             <p><b>Name:</b><%= person.name %></p>
