@@ -9,7 +9,7 @@ else
     db.many('SELECT * FROM people')
     .then((people) => {
         res.status(200)
-        res.send({people})
+        res.render('people', {people})
     })
     .catch(err => next(err));
 }

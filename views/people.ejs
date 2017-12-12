@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+        <%- include('partials/head') %>
+<body>
+        <%- include('partials/header') %>
+    <h1>Game of SQL</h1>
+    <% people.forEach(function (person) { %>
+        <% if (person.picture_url === null) person.picture_url = http://vignette4.wikia.nocookie.net/gameofthrones/images/9/92/Faceless_Men_Histories_%26_Lore.png/revision/latest?cb=20160313030358 %>
+        <div class = 'box'>
+            <h2><%= person.name %></h2>
+            <p><b>Name:</b><%= person.name %></p>
+            <p><b>Picture:</b><img src=<%= person.picture_url %> height="350" width="250"></p>
+            <p><b>Dead:</b><%= person.dead %> </p>
+            <p><b>House:</b><%= person.house_id %></p>
+            <p><b>Religion:</b> <%= person.religion_id %></p>
+        </div>
+   <% }); %>
+</body>
+</html>
