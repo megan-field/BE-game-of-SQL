@@ -1,9 +1,12 @@
 const router = require('express').Router();
-const {getAllPeople, addNewCharacter, getPersonById, aliveOrDead } = require('../controllers/character');
+const {getAllPeople, addNewCharacter, getPersonById, changeStatus, getPeopleByHouse} = require('../controllers/character');
 
 router.get('/', getAllPeople)
-router.get('/:id', getPersonById)
 router.post('/', addNewCharacter)
+router.get('/:id', getPersonById)
+router.patch('/:id', changeStatus)
+router.get('/house/:house_id', getPeopleByHouse)
+
 
 
 

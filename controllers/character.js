@@ -3,8 +3,7 @@ const db = require('../db/index')
 function getAllPeople (req, res, next) {
     
   if (req.query.dead)  aliveOrDead(req, res, next) 
-  
-
+  else if (req.query.religion_id)  peopleByReligion(req, res, next) 
 else
 { 
     db.many('SELECT * FROM people')
@@ -44,8 +43,35 @@ function aliveOrDead (req, res, next){
     })
     .catch(err=> next(err))
 }
+function peopleByReligion (req, res, next){
+    db.many('SELECT * FROM people where religion_id = $1',[req.query.religion_id])
+    .then((people)=>{
+        res.status(200)
+        res.send({people})
+    })
+    .catch(err=> next(err))
+}
+
+function changeStatus (req, res, next) {
+    const id = req.params.id;
+    const status = req.body.dead;
+    db.one('UPDATE people SET dead = $1 WHERE id = $2 RETURNING *', [status, id])
+    .then((person) => {
+        res.status(201)
+        res.send({person})
+    })
+    .catch(err=> next(err))
+}
+
+function getPeopleByHouse (req, res, next) {
+    db.many('SELECT * FROM people where house_id = $1', [req.params.house_id])
+    .then((people) => {
+        res.status(200)
+        res.send({people})
+    })
+    .catch(err => next(err))
+}
 
 
 
-
-module.exports = {getAllPeople, addNewCharacter, getPersonById, aliveOrDead }
+module.exports = {getAllPeople, addNewCharacter, getPersonById, changeStatus, getPeopleByHouse}

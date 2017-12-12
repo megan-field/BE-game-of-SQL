@@ -15,7 +15,6 @@ describe('/api', () => {
                     expect(res.body).to.be.an('object')
                     expect(res.body.houses[0].house_name).to.equal('Stark')
                 })
-
         });
     });
     describe('/houses/:id', () => {
@@ -27,7 +26,6 @@ describe('/api', () => {
                     expect(res.body.house).to.be.an('object')
                     expect(res.body.house.house_name).to.equal('Lannister')
                 });
-
         });
     });
     describe('/houses', () => {
@@ -69,7 +67,7 @@ describe('/api', () => {
                     return request
                     .get('/api/people')
                     .then(res=>{
-                        expect(res.body.people.length).to.equal(3)
+                        expect(res.body.people.length).to.equal(4)
                     });
                 });
         });
@@ -83,7 +81,6 @@ describe('/api', () => {
                     expect(res.body.person).to.be.an('object')
                     expect(res.body.person.name).to.equal('Catelyn Stark')
                 });
-
         });
     });
     describe('/people', () => {
@@ -92,15 +89,43 @@ describe('/api', () => {
             .get('/api/people?dead=false')
             .expect(200)
             .then(res => {
-                    console.log(res.body)
-                    // expect(res.body.people).to.be.an('object')
-                    expect(res.body.people.name).to.equal('Ned Stark')
+                    expect(res.body.people).to.be.an('array')
+                    expect(res.body.people[0].name).to.equal('Tyrion Lannister')
                 });
-
         });
     });
-      
-      
+    describe('/people', () => {
+        it('PATCH returns an object with one person, who has recently died, and been updated. returns a 201 status', () => {
+            return request
+            .patch('/api/people/1')
+            .send({dead: false})
+            .expect(201)
+            .then(res => {
+                    expect(res.body.person).to.be.an('object')
+                    expect(res.body.person.name).to.equal('Ned Stark')
+                    expect(res.body.person.dead).to.equal(false)
+                    return request
+            .get('/api/people?dead=false')
+            .expect(200)
+            .then(res => {
+            expect(res.body.people.length).to.equal(2)       
+                    });
+                    });
+        });
+    });  
+    describe('/api/people/house/:house_id', () => {
+        it('GET returns object all the people within a specified house and returns a 200 status', () => {
+            return request
+                .get('/api/people/house/1')
+                .expect(200)
+                .then(res => {
+                    expect(res.body.people).to.be.an('array')
+                    res.body.people.forEach((person) => {
+                        expect(person.house_id).to.equal(1);
+                    })
+                });
+        });
+    });     
       
       
       
