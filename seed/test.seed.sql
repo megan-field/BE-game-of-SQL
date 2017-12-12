@@ -37,4 +37,4 @@ INSERT INTO religions (name, type, god)
 VALUES ('Old Gods of the Forest', 'animistic', null), ('Faith of the Seven', 'monotheistic', 'The Seven');
 
 INSERT INTO people (name, picture_url, dead, house_id, religion_id)
-  VALUES ('Ned Stark', 'https://upload.wikimedia.org/wikipedia/en/5/52/Ned_Stark-Sean_Bean.jpg', true, 1, 1),('Catelyn Stark', 'https://upload.wikimedia.org/wikipedia/en/2/25/Catelyn_Stark-Michelle_Fairley_S3.jpg', true, 1, 2);
+  VALUES ('Ned Stark', 'https://upload.wikimedia.org/wikipedia/en/5/52/Ned_Stark-Sean_Bean.jpg', true, 1, 1),('Catelyn Stark', 'https://upload.wikimedia.org/wikipedia/en/2/25/Catelyn_Stark-Michelle_Fairley_S3.jpg', true, 1, 2),('Tyrion Lannister', 'https://upload.wikimedia.org/wikipedia/en/thumb/5/50/Tyrion_Lannister-Peter_Dinklage.jpg/220px-Tyrion_Lannister-Peter_Dinklage.jpg', false, 2, 2);

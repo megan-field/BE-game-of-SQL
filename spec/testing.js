@@ -86,21 +86,19 @@ describe('/api', () => {
 
         });
     });
-    // describe('/people', () => {
-    //     it('GET returns object with dead and religion queries when requested and returns a 200 status', () => {
-    //         return request
-    //         .get('/api/people?dead=false')
-    //         console.log(req.query)
-    //             // false&religion=Old%Gods%of%the%Forest
-    //             .expect(200)
-    //             .then(res => {
-    //                 console.log(res.body)
-    //                 expect(res.body.people).to.be.an('object')
-    //                 expect(res.body.people.name).to.equal('Ned Stark')
-    //             });
+    describe('/people', () => {
+        it('GET returns object with dead and religion queries when requested and returns a 200 status', () => {
+            return request
+            .get('/api/people?dead=false')
+            .expect(200)
+            .then(res => {
+                    console.log(res.body)
+                    // expect(res.body.people).to.be.an('object')
+                    expect(res.body.people.name).to.equal('Ned Stark')
+                });
 
-    //     });
-    // });
+        });
+    });
       
       
       

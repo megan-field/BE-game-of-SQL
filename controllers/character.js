@@ -1,14 +1,19 @@
 const db = require('../db/index')
 
 function getAllPeople (req, res, next) {
-if (Object.values(req.query).length === 0){ 
+    
+  if (req.query.dead)  aliveOrDead(req, res, next) 
+  
+
+else
+{ 
     db.many('SELECT * FROM people')
     .then((people) => {
         res.status(200)
         res.send({people})
     })
     .catch(err => next(err));
-} 
+}
 }
 
 function addNewCharacter (req, res, next) {
@@ -31,8 +36,16 @@ function getPersonById (req, res, next){
     .catch(err=> next(err))
 }
 
-function getPersonByQuery (req, res, next) {
-
+function aliveOrDead (req, res, next){
+    db.many('SELECT * FROM people where dead = $1',[req.query.dead])
+    .then((people)=>{
+        res.status(200)
+        res.send({people})
+    })
+    .catch(err=> next(err))
 }
 
-module.exports = {getAllPeople, addNewCharacter, getPersonById, getPersonByQuery}
+
+
+
+module.exports = {getAllPeople, addNewCharacter, getPersonById, aliveOrDead }
