@@ -6,10 +6,10 @@ function getAllPeople (req, res, next) {
   else if (req.query.religion_id)  peopleByReligion(req, res, next) 
 else
 { 
-    db.many('SELECT * FROM people')
+    db.many('SELECT * FROM people JOIN houses ON people.house_id = houses.id')
     .then((people) => {
         res.status(200)
-        res.render('people', {people})
+        res.render('pages/people', {people})
     })
     .catch(err => next(err));
 }
